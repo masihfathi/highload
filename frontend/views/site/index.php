@@ -1,5 +1,4 @@
 <?php
-
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -11,7 +10,7 @@ $this->title = 'My Yii Application';
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" data-toggle="modal" data-target="#about-modal" href="http://www.yiiframework.com">About Project</a></p>
     </div>
 
     <div class="body-content">
@@ -55,10 +54,33 @@ $this->title = 'My Yii Application';
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur.</p>
-                    
-                <div class="btn-group" role="group" aria-label="group1"><a class="btn btn-primary btn-sm" href="http://www.yiiframework.com/extensions/"><span class="glyphicon glyphicon-hand-right"></span>Yii Extensions &raquo;</a><a class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>Author</a></div>
+
+                <div class="btn-group" role="group" aria-label="group1"><a class="btn btn-primary btn-sm" href="http://www.yiiframework.com/extensions/"><span class="glyphicon glyphicon-hand-right"></span>Yii Extensions &raquo;</a><a class="btn btn-default btn-sm" data-toggle="popover" data-placement="top" title="Author Info" data-content="I realy like to read my article"><span class="glyphicon glyphicon-pencil"></span>Author</a></div>
             </div>
         </div>
 
     </div>
 </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="about-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">About Project</h4>
+            </div>
+            <div class="modal-body">
+                <p>it is really easy!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<?php
+$script = <<<EOT
+$(function () {
+    $('[data-toggle="popover"]').popover();
+})
+EOT;
+$this->registerJs($script, \yii\web\View::POS_END);
