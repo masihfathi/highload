@@ -23,8 +23,7 @@ $this->title = 'My Yii Application';
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.
-                    asdasdadsadasdasdsadsadadadadasdasdas</p>
+                    fugiat nulla pariatur.</p>
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
             </div>
@@ -51,13 +50,13 @@ $this->title = 'My Yii Application';
             </div>
             <div class="col-md-3 col-sm-6">
                 <h2>Heading #4</h2>
-
+                <span class="label label-danger">Hot!</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                    
+                <div class="btn-group" role="group" aria-label="group1"><a class="btn btn-primary btn-sm" href="http://www.yiiframework.com/extensions/"><span class="glyphicon glyphicon-hand-right"></span>Yii Extensions &raquo;</a><a class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>Author</a></div>
             </div>
         </div>
 
