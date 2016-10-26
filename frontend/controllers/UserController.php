@@ -51,9 +51,22 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $cache = Yii::$app->cache;
+        $secretKey = $cache['random'];
+        if ($secretKey === FALSE){
+            Yii::trace('Set secretkey in cache');
+            $secretKey = Yii::$app->security->generateRandomKey();
+            $cache->set('random', $secretKey,10);
+        }
+        $duration = 60;     // cache query results for 60 seconds.       
+        $db = Yii::$app->db;
+        $model = $db->cache(function($db) use($id){
+            return Yii::$app->controller->findModel($id);
+        },$duration);
+//        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'key' => Yii::$app->security->generateRandomKey(),
+            'model' => $model,
+            'key' => $secretKey,
         ]);
     }
 
