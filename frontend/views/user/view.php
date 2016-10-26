@@ -16,16 +16,37 @@ $this->params['breadcrumbs'][] = Html::encode($this->title);
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?=
+        Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
-
-    <?= DetailView::widget([
+    <p>
+<?php $escapedUsername = Html::encode($model->username); ?>
+        <?= 'Username: ' . $escapedUsername; ?>
+    </p>
+    <p>
+        <?= 'Key: ' . $key; ?>
+    </p>
+    <p>
+        <?php $encodedUsername = Yii::$app->security->encryptByPassword(
+                $escapedUsername, $key);
+        ?>
+        <?= 'Username: ' . $encodedUsername; ?>
+    </p>
+    <p>
+    <?php $decodedUsername = Yii::$app->security->decryptByPassword(
+            $encodedUsername, $key);
+    ?>
+    <?= 'Username: ' . $decodedUsername; ?>
+    </p>
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
@@ -38,6 +59,7 @@ $this->params['breadcrumbs'][] = Html::encode($this->title);
             'created_at',
             'updated_at',
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>
