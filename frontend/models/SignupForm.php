@@ -30,7 +30,7 @@ class SignupForm extends Model
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-
+            
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
         ];
@@ -48,7 +48,7 @@ class SignupForm extends Model
         }
         
         $user = new User();
-        $user->username = $this->username;
+        $user->username = \yii\helpers\HtmlPurifier::process($this->username);
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
