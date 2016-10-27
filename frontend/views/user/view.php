@@ -45,21 +45,27 @@ $this->params['breadcrumbs'][] = Html::encode($this->title);
     ?>
     <?= 'Username: ' . $decodedUsername; ?>
     </p>
-    <?=
-    DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            'email:email',
-            'status',
-            'created_at',
-            'updated_at',
-        ],
-    ])
+    <?php
+    // cache table with variations of $model->id, means with model id change cache exchange
+    if($this->beginCache('user_detail', ['variations'=>$model->id])){
+        echo DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                'username',
+                'auth_key',
+                'password_hash',
+                'password_reset_token',
+                'email:email',
+                'status',
+                'created_at',
+                'updated_at',
+            ],
+        ]);
+        // show message in log for the first time cache store
+        Yii::trace('Store user details table log');        
+        $this->endCache();
+    }
     ?>
 
 </div>
